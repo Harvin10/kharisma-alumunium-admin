@@ -3,6 +3,7 @@ require 'data.php';
 
 $raw_stocks = read("SELECT * FROM raw_stock");
 $unit_stocks = read("SELECT * FROM unit_stock");
+// $unit_custom = read("SELECT * FROM unit_custom");
 
 ?>
 
@@ -38,7 +39,7 @@ $unit_stocks = read("SELECT * FROM unit_stock");
             <section class="raw">
                 <h2>raw</h2>
                 <?php foreach ($raw_stocks as $raw_stock) : ?>
-                    <div class="card" onclick="newCustomUnit(
+                    <div class="card" onclick="newRawItem(
                     `<?= $raw_stock['name'] ?>`, 
                     `<?= $raw_stock['color'] ?>`, 
                     `<?= $raw_stock['qty'] ?>`, 
@@ -51,13 +52,12 @@ $unit_stocks = read("SELECT * FROM unit_stock");
             <section class="unit_stock">
                 <h2>unit stock</h2>
                 <?php foreach ($unit_stocks as $unit_stock) : ?>
-                    <div class="card" onclick="newCustomUnit(
+                    <div class="card" onclick="newStockUnit(
                     `<?= $unit_stock['name'] ?>`, 
-                    `<?= $unit_stock['color'] ?>`, 
+                    `<?= $unit_stock['unit_explanation'] ?>`, 
                     `<?= $unit_stock['qty'] ?>`, 
                     `<?= $unit_stock['price'] ?>`)">
 
-                        <p class="unit"><?= $unit_stock['name'] ?></p>
                     </div>
                 <?php endforeach; ?>
             </section>
@@ -69,86 +69,82 @@ $unit_stocks = read("SELECT * FROM unit_stock");
     <script>
         var main = document.querySelector(".body-main");
 
-        var newCustomUnit = (unit, length, width, height, price) => {
+        // var newCustomUnit = (unit, length, width, height, price) => {
+        //     let div = document.createElement("div");
+        //     let jsx = `
+        //         <label>
+        //             Unit
+        //             <input type="text" name="unit" value="${unit}">
+        //         </label>
+        //         <label>
+        //             Details
+        //             <input type="text" name="details">
+        //         </label>
+        //         <label>
+        //             Quantity
+        //             <input type="number" name="qty">
+        //         </label>
+        //         <label>
+        //             Length
+        //             <input type="number" name="length" value="${length}">
+        //         </label>
+        //         <label>
+        //             Width
+        //             <input type="number" name="length" value="${width}">
+        //         </label>
+        //         <label>
+        //             Height
+        //             <input type="number" name="length" value="${height}">
+        //         </label>
+        //         <label>
+        //             Price
+        //             <input type="number" name="price" value="${price}">
+        //         </label>
+        //     `;
+        //     div.innerHTML = jsx;
+        //     main.appendChild(div);
+        // }
+
+        var newRawItem = (name, color, price) => {
             let div = document.createElement("div");
             let jsx = `
                 <label>
-                    Unit
-                    <input type="text" name="unit" value="${unit}">
+                    <input type="number" name="item" value="${name}">
                 </label>
                 <label>
-                    Details
-                    <input type="text" name="details">
+                    Price
+                    <input type="number" name="color" value="${color}">
                 </label>
                 <label>
                     Quantity
-                    <input type="number" name="qty">
+                    <input type="number" name="sold_qty">
                 </label>
                 <label>
-                    Length
-                    <input type="number" name="length" value="${length}">
+                    Price
+                    <input type="number" name="price" value="${price * 2.5}">
+                </label>
+            `;
+            div.innerHTML = jsx;
+            main.appendChild(div);
+        }
+
+        var newStockUnit = (name, unit_explanation, price) => {
+            let div = document.createElement("div");
+            let jsx = `
+                <label>
+                    <input type="number" name="item" value="${name}">
                 </label>
                 <label>
-                    Width
-                    <input type="number" name="length" value="${width}">
+                    unit explanation
+                    <input type="number" name="unit_explanation" value="${unit_explanation}">
                 </label>
                 <label>
-                    Height
-                    <input type="number" name="length" value="${height}">
+                    Quantity
+                    <input type="number" name="sold_qty">
                 </label>
                 <label>
                     Price
                     <input type="number" name="price" value="${price}">
-                </label>
-            `;
-            div.innerHTML = jsx;
-            main.appendChild(div);
-        }
-
-        var newStockUnit = () => {
-            let div = document.createElement("div");
-            let jsx = `
-                <label>
-                    Unit
-                    <select type="text" name="Unit">
-                        <option value=""></option>
-                    </select>
-                </label>
-                <label>
-                    Quantity
-                    <input type="number" name="qty">
-                </label>
-                <label>
-                    Price
-                    <input type="number" name="price">
-                </label>
-            `;
-            div.innerHTML = jsx;
-            main.appendChild(div);
-        }
-
-        var newRawItem = () => {
-            let div = document.createElement("div");
-            let jsx = `
-                <label>
-                    Raw
-                    <select type="text" name="Unit">
-                        <option value=""></option>
-                    </select>
-                </label>
-                <label>
-                    Color
-                    <select type="text" name="Unit">
-                        <option value=""></option>
-                    </select>
-                </label>
-                <label>
-                    Quantity
-                    <input type="number" name="qty">
-                </label>
-                <label>
-                    Price
-                    <input type="number" name="price">
                 </label>
             `;
             div.innerHTML = jsx;

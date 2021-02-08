@@ -55,9 +55,9 @@ $unit_stocks = read("SELECT * FROM unit_stock");
                     <div class="card" onclick="newStockUnit(
                     `<?= $unit_stock['name'] ?>`, 
                     `<?= $unit_stock['unit_explanation'] ?>`, 
-                    `<?= $unit_stock['qty'] ?>`, 
                     `<?= $unit_stock['price'] ?>`)">
 
+                        <p class="unit"><?= $unit_stock['name'] ?></p>
                     </div>
                 <?php endforeach; ?>
             </section>
@@ -109,11 +109,11 @@ $unit_stocks = read("SELECT * FROM unit_stock");
             let div = document.createElement("div");
             let jsx = `
                 <label>
-                    <input type="number" name="item" value="${name}">
+                    <input type="text" name="item" value="${name}">
                 </label>
                 <label>
                     Price
-                    <input type="number" name="color" value="${color}">
+                    <input type="text" name="color" value="${color}">
                 </label>
                 <label>
                     Quantity
@@ -132,11 +132,11 @@ $unit_stocks = read("SELECT * FROM unit_stock");
             let div = document.createElement("div");
             let jsx = `
                 <label>
-                    <input type="number" name="item" value="${name}">
+                    <input type="text" name="item" value="${name}">
                 </label>
                 <label>
                     unit explanation
-                    <input type="number" name="unit_explanation" value="${unit_explanation}">
+                    <input type="text" name="unit_explanation" value="${unit_explanation}">
                 </label>
                 <label>
                     Quantity

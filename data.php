@@ -1,14 +1,14 @@
 <?php
 // $conn = new mysqli("sql105.epizy.com", "epiz_27719916", "JLlFVEoRB5", "epiz_27719916_shop");
 date_default_timezone_set('Asia/Jakarta');
-$conn = new mysqli("localhost", "root", "", "kharisma");
+$conn = new mysqli("localhost", "root", "", "kharisma2");
 
 function read($sql)
 {
     global $conn;
     $item = $conn->query($sql);
     $database = [];
-    while ($data = $item->fetch_row()) {
+    while ($data = $item->fetch_assoc()) {
         $database[] = $data;
     }
 

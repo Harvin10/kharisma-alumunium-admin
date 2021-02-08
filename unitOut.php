@@ -1,3 +1,11 @@
+<?php
+require 'data.php';
+
+$raw_stocks = read("SELECT * FROM raw_stock");
+$unit_stocks = read("SELECT * FROM unit_stock");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +26,7 @@
                 <li><a href="rawIn.php">Barang Datang</a></li> <!-- rawIn -->
                 <li><a href="rawOut.php">Barang Dipakai</a></li> <!-- rawOut -->
                 <li><a href="unitOut.php">Barang Dijual</a></li> <!-- unitOut -->
+                <li><a href="stockDefault.php">Stock Unit Default</a></li>
             </ul>
         </div>
         <div class="profile">
@@ -25,10 +34,33 @@
         </div>
     </section>
     <section class="body">
-        <section class="body-header">
-            <button onclick="newCustomUnit()">New Custom Unit</button>
-            <button onclick="newStockUnit()">New Stock Unit</button>
-            <button onclick="newRawItem()">New Raw Item</button>
+        <section class="body-side">
+            <section class="raw">
+                <h2>raw</h2>
+                <?php foreach ($raw_stocks as $raw_stock) : ?>
+                    <div class="card" onclick="newCustomUnit(
+                    `<?= $raw_stock['name'] ?>`, 
+                    `<?= $raw_stock['color'] ?>`, 
+                    `<?= $raw_stock['qty'] ?>`, 
+                    `<?= $raw_stock['price'] ?>`)">
+
+                        <p class="unit"><?= $raw_stock['name'] ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </section>
+            <section class="unit_stock">
+                <h2>unit stock</h2>
+                <?php foreach ($unit_stocks as $unit_stock) : ?>
+                    <div class="card" onclick="newCustomUnit(
+                    `<?= $unit_stock['name'] ?>`, 
+                    `<?= $unit_stock['color'] ?>`, 
+                    `<?= $unit_stock['qty'] ?>`, 
+                    `<?= $unit_stock['price'] ?>`)">
+
+                        <p class="unit"><?= $unit_stock['name'] ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </section>
         </section>
         <section class="body-main">
 
@@ -37,14 +69,12 @@
     <script>
         var main = document.querySelector(".body-main");
 
-        var newCustomUnit = () => {
+        var newCustomUnit = (unit, length, width, height, price) => {
             let div = document.createElement("div");
             let jsx = `
                 <label>
                     Unit
-                    <select type="text" name="Unit">
-                        <option value=""></option>
-                    </select>
+                    <input type="text" name="unit" value="${unit}">
                 </label>
                 <label>
                     Details
@@ -55,8 +85,20 @@
                     <input type="number" name="qty">
                 </label>
                 <label>
+                    Length
+                    <input type="number" name="length" value="${length}">
+                </label>
+                <label>
+                    Width
+                    <input type="number" name="length" value="${width}">
+                </label>
+                <label>
+                    Height
+                    <input type="number" name="length" value="${height}">
+                </label>
+                <label>
                     Price
-                    <input type="number" name="price">
+                    <input type="number" name="price" value="${price}">
                 </label>
             `;
             div.innerHTML = jsx;

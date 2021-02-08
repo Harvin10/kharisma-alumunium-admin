@@ -1,9 +1,23 @@
 <?php
 require 'data.php';
 
+$id = ($id = read("SELECT receipt_id FROM receipt ORDER BY receipt_id DESC LIMIT 1")) ? $id : 0;
 $raw_stocks = read("SELECT * FROM raw_stock");
 $unit_stocks = read("SELECT * FROM unit_stock");
 // $unit_custom = read("SELECT * FROM unit_custom");
+
+if (isset($_POST["submit"])) {
+
+    // $i = 0;
+    // while (true) {
+    //     $item = "item" . $i;
+    //     $exp = "unit_explanation" . $i;
+    //     $qty = "sold_qty" . $i;
+    //     $price = "price" . $i;
+    //     write("INSERT INTO sold_item VALUES ('$id', '$item')")
+    //     $i++;
+    // }
+}
 
 ?>
 
@@ -38,12 +52,14 @@ $unit_stocks = read("SELECT * FROM unit_stock");
         <section class="body-side">
             <section class="raw">
                 <h2>raw</h2>
-                <?php foreach ($raw_stocks as $raw_stock) : ?>
+                <?php foreach ($raw_stocks as $key => $raw_stock) : ?>
                     <div class="card" onclick="newRawItem(
+                    `<?= $raw_stock['id'] ?>`, 
                     `<?= $raw_stock['name'] ?>`, 
                     `<?= $raw_stock['color'] ?>`, 
                     `<?= $raw_stock['qty'] ?>`, 
-                    `<?= $raw_stock['price'] ?>`)">
+                    `<?= $raw_stock['price'] ?>`), 
+                    `<?= $key ?>`)">
 
                         <p class="unit"><?= $raw_stock['name'] ?></p>
                     </div>
@@ -51,11 +67,13 @@ $unit_stocks = read("SELECT * FROM unit_stock");
             </section>
             <section class="unit_stock">
                 <h2>unit stock</h2>
-                <?php foreach ($unit_stocks as $unit_stock) : ?>
+                <?php foreach ($unit_stocks as $key => $unit_stock) : ?>
                     <div class="card" onclick="newStockUnit(
+                    `<?= $unit_stock['id'] ?>`, 
                     `<?= $unit_stock['name'] ?>`, 
                     `<?= $unit_stock['unit_explanation'] ?>`, 
-                    `<?= $unit_stock['price'] ?>`)">
+                    `<?= $unit_stock['price'] ?>`, 
+                    `<?= $key ?>`)">
 
                         <p class="unit"><?= $unit_stock['name'] ?></p>
                     </div>
@@ -63,92 +81,60 @@ $unit_stocks = read("SELECT * FROM unit_stock");
             </section>
         </section>
         <section class="body-main">
-
+            <form action="" method="POST">
+                <div class="inputs">
+                </div>
+                <button type="submit" name="submit">submit</button>
+            </form>
         </section>
     </section>
     <script>
-        var main = document.querySelector(".body-main");
+        var inputs = document.querySelector(".inputs");
 
-        // var newCustomUnit = (unit, length, width, height, price) => {
-        //     let div = document.createElement("div");
-        //     let jsx = `
-        //         <label>
-        //             Unit
-        //             <input type="text" name="unit" value="${unit}">
-        //         </label>
-        //         <label>
-        //             Details
-        //             <input type="text" name="details">
-        //         </label>
-        //         <label>
-        //             Quantity
-        //             <input type="number" name="qty">
-        //         </label>
-        //         <label>
-        //             Length
-        //             <input type="number" name="length" value="${length}">
-        //         </label>
-        //         <label>
-        //             Width
-        //             <input type="number" name="length" value="${width}">
-        //         </label>
-        //         <label>
-        //             Height
-        //             <input type="number" name="length" value="${height}">
-        //         </label>
-        //         <label>
-        //             Price
-        //             <input type="number" name="price" value="${price}">
-        //         </label>
-        //     `;
-        //     div.innerHTML = jsx;
-        //     main.appendChild(div);
-        // }
-
-        var newRawItem = (name, color, price) => {
+        var newRawItem = (id, name, color, price, key) => {
             let div = document.createElement("div");
             let jsx = `
                 <label>
-                    <input type="text" name="item" value="${name}">
+                    <input type="text" name="item${key}" value="${name}">
                 </label>
                 <label>
                     Price
-                    <input type="text" name="color" value="${color}">
+                    <input type="text" name="color${key}" value="${color}">
                 </label>
                 <label>
                     Quantity
-                    <input type="number" name="sold_qty">
+                    <input type="number" name="sold_qty${key}">
                 </label>
                 <label>
                     Price
-                    <input type="number" name="price" value="${price * 2.5}">
+                    <input type="number" name="price${key}" value="${price * 2.5}">
                 </label>
             `;
             div.innerHTML = jsx;
-            main.appendChild(div);
+            inputs.appendChild(div);
         }
 
-        var newStockUnit = (name, unit_explanation, price) => {
+        var newStockUnit = (id, name, unit_explanation, price, key) => {
             let div = document.createElement("div");
             let jsx = `
                 <label>
-                    <input type="text" name="item" value="${name}">
+                    <input type="text" name="item${key}" value="${name}">
                 </label>
                 <label>
                     unit explanation
-                    <input type="text" name="unit_explanation" value="${unit_explanation}">
+                    <input type="text" name="unit_explanation${key}" value="${unit_explanation}">
                 </label>
                 <label>
                     Quantity
-                    <input type="number" name="sold_qty">
+                    <input type="number" name="sold_qty${key}">
                 </label>
                 <label>
                     Price
-                    <input type="number" name="price" value="${price}">
+                    <input type="number" name="price${key}" value="${price}">
                 </label>
             `;
             div.innerHTML = jsx;
-            main.appendChild(div);
+            inputs.appendChild(div);
         }
     </script>
 </body>

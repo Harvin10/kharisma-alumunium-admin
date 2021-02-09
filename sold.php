@@ -1,5 +1,5 @@
 <?php
-require 'data.php';
+require 'database.php';
 
 $raw_stocks = read("SELECT * FROM raw_stock");
 $unit_stocks = read("SELECT * FROM unit_stock");

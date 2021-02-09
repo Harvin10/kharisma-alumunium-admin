@@ -36,34 +36,17 @@ $unit_stocks = read("SELECT * FROM unit_stock");
     </section>
     <section class="body">
         <section class="body-side">
+            <label>
+                search
+                <input type="text" name="search" onkeyup="getData(this.value); getData2(this.value)">
+            </label>
+            <h2>Raw Item</h2>
             <section class="raw">
-                <h2>raw</h2>
-                <?php foreach ($raw_stocks as $key => $raw_stock) : ?>
-                    <div class="card" onclick="newRawItem(
-                    `<?= $raw_stock['id'] ?>`, 
-                    `<?= $raw_stock['name'] ?>`, 
-                    `<?= $raw_stock['color'] ?>`, 
-                    `<?= $raw_stock['qty'] ?>`, 
-                    `<?= $raw_stock['price'] ?>`), 
-                    `<?= $key ?>`)">
 
-                        <p class="unit"><?= $raw_stock['name'] ?></p>
-                    </div>
-                <?php endforeach; ?>
             </section>
+            <h2>Unit Stock</h2>
             <section class="unit_stock">
-                <h2>unit stock</h2>
-                <?php foreach ($unit_stocks as $key => $unit_stock) : ?>
-                    <div class="card" onclick="newStockUnit(
-                    `<?= $unit_stock['id'] ?>`, 
-                    `<?= $unit_stock['name'] ?>`, 
-                    `<?= $unit_stock['unit_explanation'] ?>`, 
-                    `<?= $unit_stock['price'] ?>`, 
-                    `<?= $key ?>`)">
 
-                        <p class="unit"><?= $unit_stock['name'] ?></p>
-                    </div>
-                <?php endforeach; ?>
             </section>
         </section>
         <section class="body-main">
@@ -75,6 +58,8 @@ $unit_stocks = read("SELECT * FROM unit_stock");
         </section>
     </section>
     <script>
+        var cards_raw = document.querySelector(".raw");
+        var cards_unit_stock = document.querySelector(".unit_stock");
         var inputs = document.querySelector(".inputs");
 
         var newRawItem = (id, name, color, price, key) => {
@@ -130,6 +115,86 @@ $unit_stocks = read("SELECT * FROM unit_stock");
         var changeItemType = (key) => {
             let type = document.querySelector("." + key).value = "2";
             console.log(type);
+        }
+
+        function getData(id) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    cards_raw.innerHTML = "";
+                    let datas = JSON.parse(this.responseText);
+                    let jsx;
+                    let ul = document.createElement("ul");
+                    if (typeof datas[0] == 'string') {
+                        jsx = `${datas[0]}`;
+                        ul.innerHTML = jsx;
+                        cards_raw.appendChild(ul);
+                        // search.classList.remove("change-search");
+                        // div.classList.remove("data-container-show");
+                    } else {
+                        datas.map((data, key) => {
+                            jsx = ` 
+                            <div class="card" onclick="newRawItem(
+                            '${data.id}', 
+                            '${data.name}', 
+                            '${data.color}', 
+                            '${data.price}', 
+                            '${key}')">
+
+                                <p class="unit">${data.name}</p>
+                            </div>
+                        `;
+                            let ul = document.createElement("ul");
+                            ul.innerHTML = jsx;
+                            cards_raw.appendChild(ul);
+                            // search.classList.add("change-search");
+                            // div.classList.add("data-container-show");
+                        })
+                    }
+                }
+            };
+            xhttp.open("GET", "data/raw.php?q=" + id, true);
+            xhttp.send();
+        }
+
+        function getData2(id) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    cards_unit_stock.innerHTML = "";
+                    let datas = JSON.parse(this.responseText);
+                    let jsx;
+                    let ul = document.createElement("ul");
+                    if (typeof datas[0] == 'string') {
+                        jsx = `${datas[0]}`;
+                        ul.innerHTML = jsx;
+                        cards_unit_stock.appendChild(ul);
+                        // search.classList.remove("change-search");
+                        // div.classList.remove("data-container-show");
+                    } else {
+                        datas.map((data, key) => {
+                            jsx = ` 
+                            <div class="card" onclick="newStockUnit(
+                            '${data.id}', 
+                            '${data.name}', 
+                            '${data.unit_explanation}', 
+                            '${data.price}', 
+                            '${key}')">
+
+                                <p class="unit">${data.name}</p>
+                            </div>
+                        `;
+                            let ul = document.createElement("ul");
+                            ul.innerHTML = jsx;
+                            cards_unit_stock.appendChild(ul);
+                            // search.classList.add("change-search");
+                            // div.classList.add("data-container-show");
+                        })
+                    }
+                }
+            };
+            xhttp.open("GET", "data/unit_stock.php?q=" + id, true);
+            xhttp.send();
         }
     </script>
 </body>

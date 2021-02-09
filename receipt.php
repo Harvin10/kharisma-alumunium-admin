@@ -52,46 +52,7 @@ foreach ($types as $key => $type) {
 </head>
 
 <body>
-    <section class="body">
-        <section class="body-side">
-            <section class="raw">
-                <h2>raw</h2>
-                <?php foreach ($raw_stocks as $key => $raw_stock) : ?>
-                    <div class="card" onclick="newRawItem(
-                    `<?= $raw_stock['id'] ?>`, 
-                    `<?= $raw_stock['name'] ?>`, 
-                    `<?= $raw_stock['color'] ?>`, 
-                    `<?= $raw_stock['qty'] ?>`, 
-                    `<?= $raw_stock['price'] ?>`), 
-                    `<?= $key ?>`)">
 
-                        <p class="unit"><?= $raw_stock['name'] ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </section>
-            <section class="unit_stock">
-                <h2>unit stock</h2>
-                <?php foreach ($unit_stocks as $key => $unit_stock) : ?>
-                    <div class="card" onclick="newStockUnit(
-                    `<?= $unit_stock['id'] ?>`, 
-                    `<?= $unit_stock['name'] ?>`, 
-                    `<?= $unit_stock['unit_explanation'] ?>`, 
-                    `<?= $unit_stock['price'] ?>`, 
-                    `<?= $key ?>`)">
-
-                        <p class="unit"><?= $unit_stock['name'] ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </section>
-        </section>
-        <section class="body-main">
-            <form action="receipt.php" method="POST">
-                <div class="inputs">
-                </div>
-                <button type="submit" name="submit">submit</button>
-            </form>
-        </section>
-    </section>
 </body>
 
 </html>

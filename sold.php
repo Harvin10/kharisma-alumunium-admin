@@ -1,23 +1,9 @@
 <?php
 require 'data.php';
 
-$id = ($id = read("SELECT receipt_id FROM receipt ORDER BY receipt_id DESC LIMIT 1")) ? $id : 0;
 $raw_stocks = read("SELECT * FROM raw_stock");
 $unit_stocks = read("SELECT * FROM unit_stock");
 // $unit_custom = read("SELECT * FROM unit_custom");
-
-if (isset($_POST["submit"])) {
-
-    // $i = 0;
-    // while (true) {
-    //     $item = "item" . $i;
-    //     $exp = "unit_explanation" . $i;
-    //     $qty = "sold_qty" . $i;
-    //     $price = "price" . $i;
-    //     write("INSERT INTO sold_item VALUES ('$id', '$item')")
-    //     $i++;
-    // }
-}
 
 ?>
 
@@ -81,7 +67,7 @@ if (isset($_POST["submit"])) {
             </section>
         </section>
         <section class="body-main">
-            <form action="" method="POST">
+            <form action="receipt.php" method="POST">
                 <div class="inputs">
                 </div>
                 <button type="submit" name="submit">submit</button>
@@ -94,20 +80,22 @@ if (isset($_POST["submit"])) {
         var newRawItem = (id, name, color, price, key) => {
             let div = document.createElement("div");
             let jsx = `
+                <input type="text" name="id[]" value="${id}" style="display:none;">
+                <input type="text" class="type${key}" name="item_type[]" value="0" style="display:none;">
                 <label>
-                    <input type="text" name="item${key}" value="${name}">
+                    <input type="text" name="item[]" value="${name}">
                 </label>
                 <label>
                     Price
-                    <input type="text" name="color${key}" value="${color}">
+                    <input type="text" name="color[]" value="${color}">
                 </label>
                 <label>
                     Quantity
-                    <input type="number" name="sold_qty${key}">
+                    <input type="number" name="sold_qty[]">
                 </label>
                 <label>
                     Price
-                    <input type="number" name="price${key}" value="${price * 2.5}">
+                    <input type="number" name="price[]" value="${price * 2.5}">
                 </label>
             `;
             div.innerHTML = jsx;
@@ -117,24 +105,31 @@ if (isset($_POST["submit"])) {
         var newStockUnit = (id, name, unit_explanation, price, key) => {
             let div = document.createElement("div");
             let jsx = `
+                <input type="text" name="id[]" value="${id}" style="display:none;">
+                <input type="text" class="type${key}" name="item_type[]" value="1" style="display:none;">
                 <label>
-                    <input type="text" name="item${key}" value="${name}">
+                    <input type="text" name="item[]" value="${name}">
                 </label>
                 <label>
                     unit explanation
-                    <input type="text" name="unit_explanation${key}" value="${unit_explanation}">
+                    <input type="text" name="unit_explanation[]" value="${unit_explanation}" onchange="changeItemType('type${key}')">
                 </label>
                 <label>
                     Quantity
-                    <input type="number" name="sold_qty${key}">
+                    <input type="number" name="sold_qty[]">
                 </label>
                 <label>
                     Price
-                    <input type="number" name="price${key}" value="${price}">
+                    <input type="number" name="price[]" value="${price}">
                 </label>
             `;
             div.innerHTML = jsx;
             inputs.appendChild(div);
+        }
+
+        var changeItemType = (key) => {
+            let type = document.querySelector("." + key).value = "2";
+            console.log(type);
         }
     </script>
 </body>

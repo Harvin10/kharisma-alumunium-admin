@@ -4,7 +4,7 @@ require '../../database.php';
 $q = $_REQUEST["q"];
 $value = [];
 
-$datas = $conn->query("SELECT * FROM raw_stock WHERE name LIKE '%$q%'");
+$datas = $conn->query("SELECT raw_stock.id, raw_stock.name, raw_stock.color, raw_in.qty, raw_in.price FROM raw_stock LEFT JOIN raw_in ON raw_stock.id = raw_in.raw_id WHERE raw_stock.name LIKE '%$q%'");
 
 foreach ($datas as $data) {
     $person = [];

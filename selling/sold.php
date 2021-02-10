@@ -1,12 +1,3 @@
-<?php
-require '../database.php';
-
-// $raw_stocks = read("SELECT * FROM raw_stock");
-// $unit_stocks = read("SELECT * FROM unit_stock");
-// $unit_custom = read("SELECT * FROM unit_custom");
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 

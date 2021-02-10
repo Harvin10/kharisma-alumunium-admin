@@ -4,7 +4,7 @@ require '../../database.php';
 $q = $_REQUEST["q"];
 $value = [];
 
-$datas = $conn->query("SELECT * FROM customers WHERE name LIKE '%$q%'");
+$datas = $conn->query("SELECT * FROM suppliers WHERE name LIKE '%$q%'");
 
 foreach ($datas as $data) {
     $person = [];

@@ -76,7 +76,7 @@ foreach ($types as $key => $type) {
                     <input type="text" name="receipt_id" class="hidden" value="<?= $receipt_id ?>">
                     <label>
                         name
-                        <input type="text" name="name" class="customer_data">
+                        <input type="text" name="name" class="customer_data" onkeyup="removeId()">
                     </label>
                     <label>
                         phone
@@ -100,6 +100,10 @@ foreach ($types as $key => $type) {
             customer_data[1].value = name;
             customer_data[2].value = phone;
             customer_data[3].value = address;
+        }
+
+        var removeId = () => {
+            customer_data[0].value = '';
         }
 
         function getCustomer(id) {

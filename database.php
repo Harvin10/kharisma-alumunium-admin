@@ -21,7 +21,7 @@ function write($sql)
 {
     global $conn;
     if (!$conn->query($sql)) {
-        echo $conn->error;
+        return $conn->error;
     }
     return $conn->insert_id;
 }

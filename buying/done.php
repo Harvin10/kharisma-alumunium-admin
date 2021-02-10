@@ -5,10 +5,9 @@ if (isset($_POST["invoice_id"])) {
     $invoice_id = $_POST['invoice_id'];
     $date = date("Y-m-d H-i-s");
     $supplier_id = $_POST['supplier_id'];
-    var_dump($supplier_id);
     $ids = $_POST['id'];
 
-    // $error = write("INSERT INTO invoice VALUES ('$invoice_id', '$date', '$supplier_id', '')");
+    $error = write("INSERT INTO invoice VALUES ('$invoice_id', '$date', '$supplier_id', '')");
     // if (gettype($error) != 'integer') {
     //     header("Location: invoice.php");
     // }

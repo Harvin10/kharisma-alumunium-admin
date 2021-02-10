@@ -69,10 +69,10 @@ if (isset($_POST["id"])) {
     <script>
         var cards_raw = document.querySelector(".raw");
         var inputs = document.querySelector(".inputs");
-        var id = document.querySelector(".item_id")
 
         var removeId = () => {
-            id.value = '';
+            var item_id = document.querySelector(".item_id");
+            item_id.value = '';
         }
 
         var newRawItem = (id, name, color, price, key) => {
@@ -93,7 +93,7 @@ if (isset($_POST["id"])) {
                 </label>
                 <label>
                     Price
-                    <input type="number" name="price[]" value="${price * 2.5}">
+                    <input type="number" name="price[]" value="${price}">
                 </label>
             `;
             div.innerHTML = jsx;

@@ -133,6 +133,10 @@ $unit_stocks = read("SELECT * FROM unit_stock");
                         // div.classList.remove("data-container-show");
                     } else {
                         datas.map((data, key) => {
+                            let name = data.name;
+                            let searchId = id;
+                            let regex = new RegExp(searchId, "g");
+                            name = name.replace(regex, `<span class="highlight">${searchId}</span>`)
                             jsx = ` 
                             <div class="card" onclick="newRawItem(
                             '${data.id}', 
@@ -141,7 +145,7 @@ $unit_stocks = read("SELECT * FROM unit_stock");
                             '${data.price}', 
                             '${key}')">
 
-                                <p class="unit">${data.name}</p>
+                                <p class="unit">${name}</p>
                             </div>
                         `;
                             let ul = document.createElement("ul");
@@ -173,6 +177,10 @@ $unit_stocks = read("SELECT * FROM unit_stock");
                         // div.classList.remove("data-container-show");
                     } else {
                         datas.map((data, key) => {
+                            let name = data.name;
+                            let searchId = id;
+                            let regex = new RegExp(searchId, "g");
+                            name = name.replace(regex, `<span class="highlight">${searchId}</span>`);
                             jsx = ` 
                             <div class="card" onclick="newStockUnit(
                             '${data.id}', 
@@ -181,7 +189,7 @@ $unit_stocks = read("SELECT * FROM unit_stock");
                             '${data.price}', 
                             '${key}')">
 
-                                <p class="unit">${data.name}</p>
+                                <p class="unit">${name}</p>
                             </div>
                         `;
                             let ul = document.createElement("ul");

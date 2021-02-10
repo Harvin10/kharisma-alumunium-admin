@@ -1,8 +1,8 @@
 <?php
-require 'database.php';
+require '../database.php';
 
-$raw_stocks = read("SELECT * FROM raw_stock");
-$unit_stocks = read("SELECT * FROM unit_stock");
+// $raw_stocks = read("SELECT * FROM raw_stock");
+// $unit_stocks = read("SELECT * FROM unit_stock");
 // $unit_custom = read("SELECT * FROM unit_custom");
 
 ?>
@@ -14,20 +14,18 @@ $unit_stocks = read("SELECT * FROM unit_stock");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/main.css">
     <title>Document</title>
 </head>
 
 <body>
     <section class="header">
         <div class="logo">
-            <a href="unitOut.php"><img src="#" alt="Logo"></a>
+            <a href="index.php"><img src="#" alt="Logo"></a>
         </div>
         <div class="menu">
             <ul>
-                <li><a href="rawIn.php">Barang Datang</a></li> <!-- rawIn -->
-                <li><a href="rawOut.php">Barang Dipakai</a></li> <!-- rawOut -->
-                <li><a href="unitOut.php">Barang Dijual</a></li> <!-- unitOut -->
-                <li><a href="stockDefault.php">Stock Unit Default</a></li>
+                <li><a href="../index.php">Barang Datang</a></li>
             </ul>
         </div>
         <div class="profile">
@@ -38,7 +36,7 @@ $unit_stocks = read("SELECT * FROM unit_stock");
         <section class="body-side">
             <label>
                 search
-                <input type="text" name="search" onkeyup="getData(this.value); getData2(this.value)">
+                <input type="text" name="search" onkeyup="getRaw(this.value); getUnitStock(this.value)">
             </label>
             <h2>Raw Item</h2>
             <section class="raw">
@@ -65,8 +63,8 @@ $unit_stocks = read("SELECT * FROM unit_stock");
         var newRawItem = (id, name, color, price, key) => {
             let div = document.createElement("div");
             let jsx = `
-                <input type="text" name="id[]" value="${id}" style="display:none;">
-                <input type="text" class="type${key}" name="item_type[]" value="0" style="display:none;">
+                <input type="text" name="id[]" value="${id}" class="hidden">
+                <input type="text" class="type${key}" name="item_type[]" value="0" class="hidden">
                 <label>
                     <input type="text" name="item[]" value="${name}">
                 </label>
@@ -90,8 +88,8 @@ $unit_stocks = read("SELECT * FROM unit_stock");
         var newStockUnit = (id, name, unit_explanation, price, key) => {
             let div = document.createElement("div");
             let jsx = `
-                <input type="text" name="id[]" value="${id}" style="display:none;">
-                <input type="text" class="type${key}" name="item_type[]" value="1" style="display:none;">
+                <input type="text" name="id[]" value="${id}" class="hidden">
+                <input type="text" class="type${key}" name="item_type[]" value="1" class="hidden">
                 <label>
                     <input type="text" name="item[]" value="${name}">
                 </label>
@@ -117,7 +115,7 @@ $unit_stocks = read("SELECT * FROM unit_stock");
             console.log(type);
         }
 
-        function getData(id) {
+        function getRaw(id) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -161,7 +159,7 @@ $unit_stocks = read("SELECT * FROM unit_stock");
             xhttp.send();
         }
 
-        function getData2(id) {
+        function getUnitStock(id) {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {

@@ -8,10 +8,6 @@ if (isset($_POST["invoice_id"])) {
     $ids = $_POST['id'];
 
     $error = write("INSERT INTO invoice VALUES ('$invoice_id', '$date', '$supplier_id', '')");
-    // if (gettype($error) != 'integer') {
-    //     header("Location: invoice.php");
-    // }
-    // var_dump(gettype($error));
 
     foreach ($ids as $key => $id) {
         $item_id = $_POST['id'][$key];

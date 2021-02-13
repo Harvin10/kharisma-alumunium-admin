@@ -57,7 +57,7 @@ if (isset($_POST["id"])) {
                     <input type="text" class="hidden" name="supplier_id" value="<?= $id ?>">
                     <label>
                         invoice number <span class="error error_invoice"></span>
-                        <input type="text" name="invoice_id" onchange="validate();">
+                        <input type="text" name="invoice_id" onchange="validate();" require>
                     </label>
                 </div>
                 <div class="inputs">
@@ -69,19 +69,14 @@ if (isset($_POST["id"])) {
     <script>
         var cards_raw = document.querySelector(".raw");
         var inputs = document.querySelector(".inputs");
-        var item_id = document.querySelectorAll(".item_id");
+        var cnt = 0;
 
-        setInterval(() => {
-            if (typeof item_id == "undefined") {
-                item_id = document.querySelectorAll(".item_id");
-            } else {
-                item_id.forEach((item) => {
-                    item.addEventListener("change", (event) => {
-                        console.log(event);
-                    });
-                })
-            }
-        }, 1000);
+        var removeId = (key) => {
+            var item_id = document.querySelectorAll(".item_id");
+            console.log(item_id, item_id[key], key);
+            item_id[key].value = " ";
+            console.log(item_id, item_id[key].value);
+        }
 
         var newRawItem = (id, name, color, price, key) => {
             let div = document.createElement("div");
@@ -89,11 +84,11 @@ if (isset($_POST["id"])) {
                 <input type="text" name="id[]" value="${id}" class="hidden item_id">
                 <label>
                     name
-                    <input type="text" name="item[]" value="${name}">
+                    <input type="text" name="item[]" value="${name}" onchange="removeId(${cnt})">
                 </label>
                 <label>
                     color
-                    <input type="text" name="color[]" value="${color}">
+                    <input type="text" name="color[]" value="${color}" onchange="removeId(${cnt})">
                 </label>
                 <label>
                     Quantity
@@ -106,6 +101,7 @@ if (isset($_POST["id"])) {
             `;
             div.innerHTML = jsx;
             inputs.appendChild(div);
+            cnt++;
         }
 
         var xhttp = new XMLHttpRequest();

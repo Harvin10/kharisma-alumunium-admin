@@ -9,13 +9,13 @@ if (isset($_POST["invoice_id"])) {
 
     $error = write("INSERT INTO invoice VALUES ('$invoice_id', '$date', '$supplier_id', '')");
 
+    var_dump($ids);
     foreach ($ids as $key => $id) {
-        $item_id = $_POST['id'][$key];
         $name = $_POST["item"][$key];
         $color = $_POST["color"][$key];
         $qty = $_POST['sold_qty'][$key];
         $price = $_POST['price'][$key];
-        $item_id = ($new_id = write("INSERT INTO raw_stock VALUES ('$item_id', '$name', '$color') ON DUPLICATE KEY UPDATE name='$name', color='$color'")) ? $new_id : $id;
+        $id = ($new_id = write("INSERT INTO raw_stock VALUES ('$id', '$name', '$color') ON DUPLICATE KEY UPDATE name='$name', color='$color'")) ? $new_id : $id;
         write("INSERT INTO raw_in VALUES ('$invoice_id', '$id', '$qty', '$price')");
     }
 }

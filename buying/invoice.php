@@ -44,7 +44,7 @@ if (isset($_POST["id"])) {
         <section class="body-side">
             <label>
                 search
-                <input type="text" name="search" onkeyup="getRaw(this.value)">
+                <input type="text" name="search" onkeyup="getRaw(this.value);">
             </label>
             <h2>Raw Item</h2>
             <section class="raw">
@@ -52,12 +52,12 @@ if (isset($_POST["id"])) {
             </section>
         </section>
         <section class="body-main">
-            <form action="done.php" method="POST">
+            <form action="done.php" method="POST" id="invoice">
                 <div class="invoice">
                     <input type="text" class="hidden" name="supplier_id" value="<?= $id ?>">
                     <label>
-                        invoice number
-                        <input type="text" name="invoice_id">
+                        invoice number <span class="error error_invoice"></span>
+                        <input type="text" name="invoice_id" onchange="validate();" require>
                     </label>
                 </div>
                 <div class="inputs">
@@ -69,10 +69,13 @@ if (isset($_POST["id"])) {
     <script>
         var cards_raw = document.querySelector(".raw");
         var inputs = document.querySelector(".inputs");
+        var cnt = 0;
 
-        var removeId = () => {
-            var item_id = document.querySelector(".item_id");
-            item_id.value = '';
+        var removeId = (key) => {
+            var item_id = document.querySelectorAll(".item_id");
+            console.log(item_id, item_id[key], key);
+            item_id[key].value = " ";
+            console.log(item_id, item_id[key].value);
         }
 
         var newRawItem = (id, name, color, price, key) => {
@@ -81,11 +84,11 @@ if (isset($_POST["id"])) {
                 <input type="text" name="id[]" value="${id}" class="hidden item_id">
                 <label>
                     name
-                    <input type="text" name="item[]" value="${name}"  onkeyup="removeId()">
+                    <input type="text" name="item[]" value="${name}" onchange="removeId(${cnt})">
                 </label>
                 <label>
                     color
-                    <input type="text" name="color[]" value="${color}">
+                    <input type="text" name="color[]" value="${color}" onchange="removeId(${cnt})">
                 </label>
                 <label>
                     Quantity
@@ -98,10 +101,12 @@ if (isset($_POST["id"])) {
             `;
             div.innerHTML = jsx;
             inputs.appendChild(div);
+            cnt++;
         }
 
+        var xhttp = new XMLHttpRequest();
+
         function getRaw(id) {
-            var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     cards_raw.innerHTML = "";
@@ -142,6 +147,20 @@ if (isset($_POST["id"])) {
             };
             xhttp.open("GET", "../selling/data/raw.php?q=" + id, true);
             xhttp.send();
+        }
+
+        var error_invoice = document.querySelector(".error_invoice");
+
+        function validate() {
+            var data = document.querySelector("#invoice");
+            var formData = new FormData(data);
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    error_invoice.innerHTML = xhttp.responseText;
+                }
+            }
+            xhttp.open("POST", "data/validate.php", true);
+            xhttp.send(formData);
         }
     </script>
 </body>

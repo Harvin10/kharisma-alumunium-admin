@@ -11,6 +11,7 @@
 <body>
     <a href="selling/sold.php">selling</a>
     <a href="buying/bought.php">buying</a>
+    <a href="production/used.php">production</a>
 </body>
 
 </html>

@@ -23,7 +23,6 @@ function write($sql)
     if (!$conn->query($sql)) {
         return $conn->error;
     }
-    var_dump($sql);
     return $conn->insert_id;
 }
 

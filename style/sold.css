@@ -1,157 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=B612&display=swap");
-
-:root {
-  --button: 150px;
-}
-
-label {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  font-size: 1.5rem;
-  font-family: "B612", sans-serif;
-  text-transform: capitalize;
-}
-
-input[type="text"],
-input[type="number"] {
-  height: 35px;
-  width: max-content;
-  margin: 0 5px;
-  padding: 0 15px;
-  border-radius: 50px;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  -ms-border-radius: 50px;
-  -o-border-radius: 50px;
-  outline: none;
-  border: 0px;
-  font-size: 1.2rem;
-  font-family: "B612", sans-serif;
-  overflow-y: scroll;
-}
-
 .header {
   height: 5vh;
 }
 
 .body {
   height: 95vh;
-  padding: 20px 50px 50px;
-  background-color: red;
   display: grid;
   grid-template-areas:
     "body-top body-top"
     "body-side body-main";
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr 10fr;
-  row-gap: 20px;
-  column-gap: 50px;
+  grid-template-rows: 1fr 8fr;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding: 50px;
   box-sizing: border-box;
 }
 
 .body-top {
   grid-area: body-top;
-}
-
-.body-top > div {
-  float: right;
-  width: 30%;
-  height: 100%;
-  background-color: cyan;
-  text-align: right;
-  font-size: 2rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 10px;
-  box-sizing: border-box;
+  background-color: green;
 }
 
 .body-side {
   grid-area: body-side;
-  background-color: green;
-  padding: 10px;
-  font-family: "B612", sans-serif;
-  text-transform: capitalize;
-}
-
-h2 {
-  text-align: center;
-  font-size: 1.5rem;
-  font-family: "B612", sans-serif;
   background-color: orange;
-  margin: 10px 0;
-  padding: 5px;
-}
-
-.body-side div {
-  background-color: purple;
-  margin: 10px 0;
-  padding: 10px;
-  display: grid;
-  grid-template-areas:
-    "unit-name unit-color ."
-    ". . unit-price";
-  font-size: 1.2rem;
-}
-
-.unit {
-  grid-area: unit-name;
-}
-
-.highlight {
-  background-color: yellow;
-}
-
-.color {
-  grid-area: unit-color;
-}
-
-.price {
-  grid-area: unit-price;
 }
 
 .body-main {
   grid-area: body-main;
-  background-color: blue;
-  padding: 10px;
-}
-
-.body-main > form {
-  height: 100%;
-  display: grid;
-  grid-template-areas:
-    "inputs"
-    "button";
-  grid-template-rows: 9fr 1fr;
-  gap: 10px;
-}
-
-.inputs-container {
-  grid-area: inputs;
-  background-color: green;
-}
-
-.inputs div {
-  padding: 10px;
-  background-color: orange;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.button {
-  grid-area: button;
-  background-color: purple;
-  justify-self: end;
-  align-self: center;
-}
-
-.button > button {
-  width: var(--button);
-  height: calc(var(--button) / 3);
-  outline: none;
-  border: 0px;
-  text-transform: capitalize;
-  font-family: "B612", "sans-serif";
+  background-color: yellow;
 }

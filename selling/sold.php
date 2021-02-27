@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/sold.css">
+    <link rel="stylesheet" href="../style/input.css?version='1.0'">
     <title>Document</title>
 </head>
 

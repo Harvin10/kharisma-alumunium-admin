@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/sold.css">
     <title>Document</title>
 </head>
 
@@ -24,8 +25,13 @@
         </div>
     </section>
     <section class="body">
+        <section class="body-top">
+            <div>
+                Rp. <span class="total">0</span>
+            </div>
+        </section>
         <section class="body-side">
-            <label>
+            <label class="search-item">
                 search
                 <input type="text" name="search" onkeyup="getRaw(this.value); getUnitStock(this.value)">
             </label>
@@ -40,9 +46,13 @@
         </section>
         <section class="body-main">
             <form action="receipt.php" method="POST">
-                <div class="inputs">
-                </div>
-                <button type="submit" name="submit">submit</button>
+                <section class="inputs-container">
+                    <div class="inputs">
+                    </div>
+                </section>
+                <section class="button">
+                    <button type="submit" name="submit">submit</button>
+                </section>
             </form>
         </section>
     </section>
@@ -50,22 +60,24 @@
         var cards_raw = document.querySelector(".raw");
         var cards_unit_stock = document.querySelector(".unit_stock");
         var inputs = document.querySelector(".inputs");
+        var total = document.querySelector(".total");
 
         var newRawItem = (id, name, color, price, key) => {
             let div = document.createElement("div");
             let jsx = `
                 <input type="text" name="id[]" value="${id}" class="hidden">
-                <input type="text" class="type${key}" name="item_type[]" value="0" class="hidden">
+                <input type="text" class="type${key} hidden" name="item_type[]" value="0">
                 <label>
+                    Name
                     <input type="text" name="item[]" value="${name}">
                 </label>
                 <label>
-                    Price
+                    Color
                     <input type="text" name="color[]" value="${color}">
                 </label>
                 <label>
                     Quantity
-                    <input type="number" name="sold_qty[]">
+                    <input type="number" name="sold_qty[]" required>
                 </label>
                 <label>
                     Price
@@ -82,6 +94,7 @@
                 <input type="text" name="id[]" value="${id}" class="hidden">
                 <input type="text" class="type${key}" name="item_type[]" value="1" class="hidden">
                 <label>
+                name
                     <input type="text" name="item[]" value="${name}">
                 </label>
                 <label>
@@ -90,7 +103,7 @@
                 </label>
                 <label>
                     Quantity
-                    <input type="number" name="sold_qty[]">
+                    <input type="number" name="sold_qty[]" required>
                 </label>
                 <label>
                     Price
@@ -123,9 +136,11 @@
                     } else {
                         datas.map((data, key) => {
                             let name = data.name;
+                            let color = data.color;
                             let searchId = id;
                             let regex = new RegExp(searchId, "g");
                             name = name.replace(regex, `<span class="highlight">${searchId}</span>`)
+                            color = color.replace(regex, `<span class="highlight">${searchId}</span>`)
                             jsx = ` 
                             <div class="card" onclick="newRawItem(
                             '${data.id}', 
@@ -135,6 +150,8 @@
                             '${key}')">
 
                                 <p class="unit">${name}</p>
+                                <p class="color">${color}</p>
+                                <p class="price">${data.price}</p>
                             </div>
                         `;
                             let ul = document.createElement("ul");

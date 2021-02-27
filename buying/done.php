@@ -34,7 +34,7 @@ if (isset($_POST["invoice_id"])) {
 </head>
 
 <body>
-
+    <a href="../index.php">back to homepage</a>
 </body>
 
 </html>

@@ -41,9 +41,6 @@ foreach ($types as $key => $type) {
     }
 }
 
-// /* this page */
-// $customers = read("SELECT * FROM customer");
-
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +51,8 @@ foreach ($types as $key => $type) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/sold.css">
+    <link rel="stylesheet" href="../style/receipt.css">
     <title>Document</title>
 </head>
 
@@ -87,7 +86,9 @@ foreach ($types as $key => $type) {
                         <input type="text" name="address" class="customer_data">
                     </label>
                 </div>
-                <button type="submit" name="submit">submit</button>
+                <div class="button">
+                    <button type="submit" name="submit">submit</button>
+                </div>
             </form>
         </section>
     </section>

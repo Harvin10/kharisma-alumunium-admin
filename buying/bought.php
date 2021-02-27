@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/sold.css">
+    <link rel="stylesheet" href="../style/receipt.css">
     <title>Document</title>
 </head>
 
@@ -38,7 +40,9 @@
                         <input type="text" name="address" class="supplier_data">
                     </label>
                 </div>
-                <button type="submit" name="submit">submit</button>
+                <div class="button">
+                    <button type="submit" name="submit">submit</button>
+                </div>
             </form>
         </section>
     </section>

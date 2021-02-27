@@ -23,6 +23,8 @@ if (isset($_POST["id"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/sold.css">
+    <link rel="stylesheet" href="../style/invoice.css">
     <title>Document</title>
 </head>
 
@@ -60,9 +62,13 @@ if (isset($_POST["id"])) {
                         <input type="text" name="invoice_id" onchange="validate();" require>
                     </label>
                 </div>
-                <div class="inputs">
+                <div class="inputs-container">
+                    <div class="inputs">
+                    </div>
                 </div>
-                <button type="submit" name="submit">submit</button>
+                <div class="button">
+                    <button type="submit" name="submit">submit</button>
+                </div>
             </form>
         </section>
     </section>

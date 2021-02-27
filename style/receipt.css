@@ -1,0 +1,36 @@
+.inputs {
+  grid-area: inputs;
+  background-color: green;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-family: "B612", sans-serif;
+  font-size: 1.5rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: "B612", sans-serif;
+  text-transform: capitalize;
+}
+
+input[type="text"] {
+  height: 35px;
+  width: max-content;
+  margin: 0 5px;
+  padding: 0 15px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  outline: none;
+  border: 0px;
+  font-size: 1.2rem;
+  font-family: "B612", sans-serif;
+  overflow-y: scroll;
+}

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../style/sold.css">
     <link rel="stylesheet" href="../style/receipt.css">
     <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/bought.css">
     <title>Document</title>
 </head>
 

@@ -1,0 +1,11 @@
+.body {
+  height: 95vh;
+  padding: 20px 50px 50px;
+  background-color: red;
+  display: grid;
+  grid-template-areas: "body-side body-main";
+  grid-template-columns: 1fr 3.7fr;
+  grid-template-rows: 1fr;
+  column-gap: 50px;
+  box-sizing: border-box;
+}

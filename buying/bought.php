@@ -8,10 +8,27 @@
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/sold.css">
     <link rel="stylesheet" href="../style/receipt.css">
+    <link rel="stylesheet" href="../style/header.css">
     <title>Document</title>
 </head>
 
 <body>
+    <section class="header">
+        <div class="logo">
+            <a href="index.php"><img src="#" alt="Logo"></a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="../index.php">home</a></li>
+                <li><a href="../selling/sold.php">sales</a></li>
+                <li><a href="../buying/bought.php" class="this">purchases</a></li>
+                <li><a href="../production/used.php">used items</a></li>
+            </ul>
+        </div>
+        <div class="profile">
+            <a href="#"></a> <!-- profile -->
+        </div>
+    </section>
     <section class="body">
         <section class="body-side">
             <label>
@@ -29,15 +46,15 @@
                     <input type="text" name="id" class="supplier_data hidden">
                     <label>
                         name
-                        <input type="text" name="name" class="supplier_data">
+                        <input type="text" name="name" class="supplier_data" required>
                     </label>
                     <label>
                         phone
-                        <input type="text" name="phone" class="supplier_data">
+                        <input type="text" name="phone" class="supplier_data" required>
                     </label>
                     <label>
                         address
-                        <input type="text" name="address" class="supplier_data">
+                        <input type="text" name="address" class="supplier_data" required>
                     </label>
                 </div>
                 <div class="button">

@@ -25,6 +25,7 @@ if (isset($_POST["id"])) {
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/sold.css">
     <link rel="stylesheet" href="../style/invoice.css">
+    <link rel="stylesheet" href="../style/header.css">
     <title>Document</title>
 </head>
 
@@ -35,7 +36,10 @@ if (isset($_POST["id"])) {
         </div>
         <div class="menu">
             <ul>
-                <li><a href="../index.php">Barang Datang</a></li>
+                <li><a href="../index.php">home</a></li>
+                <li><a href="../selling/sold.php">sales</a></li>
+                <li><a href="../buying/bought.php" class="this">purchases</a></li>
+                <li><a href="../production/used.php">used items</a></li>
             </ul>
         </div>
         <div class="profile">
@@ -59,7 +63,7 @@ if (isset($_POST["id"])) {
                     <input type="text" class="hidden" name="supplier_id" value="<?= $id ?>">
                     <label>
                         invoice number <span class="error error_invoice"></span>
-                        <input type="text" name="invoice_id" onchange="validate();" require>
+                        <input type="text" name="invoice_id" onchange="validate();" required>
                     </label>
                 </div>
                 <div class="inputs-container">
@@ -67,7 +71,7 @@ if (isset($_POST["id"])) {
                     </div>
                 </div>
                 <div class="button">
-                    <button type="submit" name="submit">submit</button>
+                    <button type="submit" name="submit" id="submit">submit</button>
                 </div>
             </form>
         </section>
@@ -168,6 +172,15 @@ if (isset($_POST["id"])) {
             xhttp.open("POST", "data/validate.php", true);
             xhttp.send(formData);
         }
+
+        var submit = document.querySelector("#submit");
+
+        submit.addEventListener("click", function(event) {
+            if (inputs.innerText == "") {
+                event.preventDefault();
+                alert("Please add item");
+            }
+        })
     </script>
 </body>
 

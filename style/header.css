@@ -1,0 +1,44 @@
+.header {
+  background-color: pink;
+}
+
+.logo {
+  display: inline-block;
+}
+
+.menu {
+  height: 100%;
+  float: right;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.menu > ul {
+  height: 100%;
+}
+
+.menu > ul > li {
+  display: inline-block;
+  margin-right: 20px;
+  height: 100%;
+}
+
+.menu > ul > li > a {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  padding: 0 5px;
+  font-size: 1.3rem;
+  font-family: "B612", sans-serif;
+}
+
+.this {
+  background-color: rgb(224, 169, 179);
+}
+
+.menu > ul > li > a:hover {
+  background-color: rgb(173, 130, 137);
+}

@@ -1,0 +1,29 @@
+:root {
+  --button: 150px;
+}
+
+.inputs div {
+  padding: 10px;
+  background-color: orange;
+  display: grid;
+  grid-template-columns: repeat(3, 5fr);
+}
+
+.button {
+  grid-area: button;
+  background-color: purple;
+  justify-self: end;
+  align-self: center;
+}
+
+.button > .submit-ajax {
+  width: var(--button);
+  height: calc(var(--button) / 3);
+  outline: none;
+  border: 0px;
+  text-transform: capitalize;
+  font-family: "B612", "sans-serif";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,5 +1,5 @@
 .body-main > form {
-  height: min-height;
+  height: 100%;
   display: grid;
   grid-template-areas:
     "invoice"
@@ -14,5 +14,9 @@
 }
 
 .invoice > label {
-  width: min-content;
+  width: 300px;
 }
+
+/* .invoice > label > span {
+  d
+} */

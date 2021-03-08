@@ -53,10 +53,27 @@ foreach ($types as $key => $type) {
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/sold.css">
     <link rel="stylesheet" href="../style/receipt.css">
+    <link rel="stylesheet" href="../style/header.css">
     <title>Document</title>
 </head>
 
 <body>
+    <section class="header">
+        <div class="logo">
+            <a href="index.php"><img src="#" alt="Logo"></a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="../index.php">home</a></li>
+                <li><a href="../selling/sold.php" class="this">sales</a></li>
+                <li><a href="../buying/bought.php">purchases</a></li>
+                <li><a href="../production/used.php">used items</a></li>
+            </ul>
+        </div>
+        <div class="profile">
+            <a href="#"></a> <!-- profile -->
+        </div>
+    </section>
     <section class="body">
         <section class="body-side">
             <label>
@@ -75,15 +92,15 @@ foreach ($types as $key => $type) {
                     <input type="text" name="receipt_id" class="hidden" value="<?= $receipt_id ?>">
                     <label>
                         name
-                        <input type="text" name="name" class="customer_data" onkeyup="removeId()">
+                        <input type="text" name="name" class="customer_data" onkeyup="removeId()" required>
                     </label>
                     <label>
                         phone
-                        <input type="text" name="phone" class="customer_data">
+                        <input type="text" name="phone" class="customer_data" required>
                     </label>
                     <label>
                         address
-                        <input type="text" name="address" class="customer_data">
+                        <input type="text" name="address" class="customer_data" required>
                     </label>
                 </div>
                 <div class="button">

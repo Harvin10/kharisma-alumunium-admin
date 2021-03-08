@@ -9,7 +9,6 @@ if (isset($_POST["invoice_id"])) {
 
     $error = write("INSERT INTO invoice VALUES ('$invoice_id', '$date', '$supplier_id', '')");
 
-    var_dump($ids);
     foreach ($ids as $key => $id) {
         $name = $_POST["item"][$key];
         $color = $_POST["color"][$key];

@@ -16,7 +16,6 @@ label {
 input[type="text"],
 input[type="number"] {
   height: 35px;
-  width: max-content;
   margin: 0 5px;
   padding: 0 15px;
   border-radius: 50px;
@@ -28,7 +27,6 @@ input[type="number"] {
   border: 0px;
   font-size: 1.2rem;
   font-family: "B612", sans-serif;
-  overflow-y: scroll;
 }
 
 .header {
@@ -43,7 +41,7 @@ input[type="number"] {
   grid-template-areas:
     "body-top body-top"
     "body-side body-main";
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 3.7fr;
   grid-template-rows: 1fr 10fr;
   row-gap: 20px;
   column-gap: 50px;
@@ -74,6 +72,8 @@ input[type="number"] {
   padding: 10px;
   font-family: "B612", sans-serif;
   text-transform: capitalize;
+  overflow-y: scroll;
+  overflow-x: none;
 }
 
 h2 {
@@ -137,7 +137,7 @@ h2 {
   padding: 10px;
   background-color: orange;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 5fr);
 }
 
 .button {

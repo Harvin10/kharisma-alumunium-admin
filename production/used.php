@@ -6,51 +6,70 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/sold.css">
+    <link rel="stylesheet" href="../style/invoice.css">
+    <link rel="stylesheet" href="../style/used.css">
+    <link rel="stylesheet" href="../style/header.css">
     <title>Document</title>
 </head>
 
 <body>
+    <section class="header">
+        <div class="logo">
+            <a href="index.php"><img src="#" alt="Logo"></a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="../index.php">home</a></li>
+                <li><a href="../selling/sold.php">sales</a></li>
+                <li><a href="../buying/bought.php">purchases</a></li>
+                <li><a href="../production/used.php" class="this">used items</a></li>
+            </ul>
+        </div>
+        <div class="profile">
+            <a href="#"></a> <!-- profile -->
+        </div>
+    </section>
     <section class="body">
         <section class="body-side">
             <label>
                 search
                 <input type="text" name="search_raw" onkeyup="getRaw(this.value)">
             </label>
-            <h2>Raw Item</h2>
-            <section class="raw">
-
-            </section>
             <label>
                 employee
                 <input type="text" name="search_employee" onkeyup="getEmployee(this.value)">
             </label>
-            <h2>Employee</h2>
-            <section class="employee">
+            <h2 class="label">Raw Item</h2>
+            <section class="cards">
 
             </section>
         </section>
         <section class="body-main">
             <form action="" method="POST" id="items">
-                <div class="input_employee">
+                <div class="input_employee invoice">
                     <input type="text" name="employee_id" class="employee_data hidden">
                     <label>
                         name
-                        <input type="text" name="name" class="employee_data">
+                        <input type="text" name="name" class="employee_data" required>
                     </label>
                 </div>
-                <div class="input_raw">
+                <div class="inputs-container">
+                    <div class="input_raw inputs">
+                    </div>
                 </div>
-                <div class="submit">submit ajax</div>
-                <button type="submit" name="submit">submit</button>
+                <div class="button">
+                    <div class="submit-ajax">submit</div>
+                </div>
             </form>
         </section>
     </section>
     <script>
-        var cards_raw = document.querySelector(".raw");
-        var card_employee = document.querySelector(".employee");
+        var cards = document.querySelector(".cards");
+        var label = document.querySelector(".label");
         var employee_data = document.querySelectorAll(".employee_data");
         var inputs = document.querySelector(".input_raw");
-        var submit = document.querySelector(".submit");
+        var submit = document.querySelector(".submit-ajax");
 
         submit.addEventListener("click", inputData);
 
@@ -59,6 +78,7 @@
             let jsx = `
                 <input type="text" name="id[]" value="${id}" class="hidden">
                 <label>
+                    Name
                     <input type="text" name="item[]" value="${name}" readonly>
                 </label>
                 <label>
@@ -84,27 +104,37 @@
         function inputData() {
             var form = document.querySelector("#items");
             var formData = new FormData(form);
-            xhttp.onreadystatechange = function() {
-                console.log(this.readyState, this.status);
-                if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
+            if (employee_data[1].value == "") {
+                alert("Please enter employee name");
+                return
+            } else if (inputs.innerText == "") {
+                alert("Please enter items");
+                return
+            } else {
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        cards.innerHTML = "";
+                        inputs.innerHTML = "";
+                        newEmployee("", "");
+                        alert("success");
+                    }
                 }
+                xhttp.open("POST", "data/inputUsed.php", true);
+                xhttp.send(formData);
             }
-            xhttp.open("POST", "data/inputUsed.php", true);
-            xhttp.send(formData);
         }
 
         function getRaw(id) {
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    cards_raw.innerHTML = "";
+                    cards.innerHTML = "";
                     let datas = JSON.parse(this.responseText);
                     let jsx;
                     let ul = document.createElement("ul");
                     if (typeof datas[0] == 'string') {
                         jsx = `${datas[0]}`;
                         ul.innerHTML = jsx;
-                        cards_raw.appendChild(ul);
+                        cards.appendChild(ul);
                     } else {
                         datas.map((data, key) => {
                             let name = data.name;
@@ -123,7 +153,8 @@
                         `;
                             let ul = document.createElement("ul");
                             ul.innerHTML = jsx;
-                            cards_raw.appendChild(ul);
+                            cards.appendChild(ul);
+                            label.innerHTML = "Raw Item";
                         })
                     }
                 }
@@ -135,14 +166,14 @@
         function getEmployee(id) {
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    card_employee.innerHTML = "";
+                    cards.innerHTML = "";
                     let datas = JSON.parse(this.responseText);
                     let jsx;
                     let ul = document.createElement("ul");
                     if (typeof datas[0] == 'string') {
                         jsx = `${datas[0]}`;
                         ul.innerHTML = jsx;
-                        card_employee.appendChild(ul);
+                        cards.appendChild(ul);
                     } else {
                         datas.map((data, key) => {
                             let name = data.name;
@@ -159,7 +190,8 @@
                         `;
                             let ul = document.createElement("ul");
                             ul.innerHTML = jsx;
-                            card_employee.appendChild(ul);
+                            cards.appendChild(ul);
+                            label.innerHTML = "Employee";
                         })
                     }
                 }

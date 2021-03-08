@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/sold.css">
+    <link rel="stylesheet" href="../style/header.css">
     <title>Document</title>
 </head>
 
@@ -17,7 +18,10 @@
         </div>
         <div class="menu">
             <ul>
-                <li><a href="../index.php">Barang Datang</a></li>
+                <li><a href="../index.php">home</a></li>
+                <li><a href="../selling/sold.php" class="this">sales</a></li>
+                <li><a href="../buying/bought.php">purchases</a></li>
+                <li><a href="../production/used.php">used items</a></li>
             </ul>
         </div>
         <div class="profile">
@@ -51,7 +55,7 @@
                     </div>
                 </section>
                 <section class="button">
-                    <button type="submit" name="submit">submit</button>
+                    <button type="submit" name="submit" id="submit">submit</button>
                 </section>
             </form>
         </section>
@@ -210,6 +214,15 @@
             xhttp.open("GET", "data/unit_stock.php?q=" + id, true);
             xhttp.send();
         }
+
+        var submit = document.querySelector("#submit");
+
+        submit.addEventListener("click", function(event) {
+            if (inputs.innerText == "") {
+                event.preventDefault();
+                alert("Please add item");
+            }
+        });
     </script>
 </body>
 

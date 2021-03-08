@@ -35,7 +35,6 @@
         </section>
     </section>
     <script>
-        var cards_raw = document.querySelector(".raw");
         var cards_unit_stock = document.querySelector(".unit_stock");
         var inputs = document.querySelector(".inputs");
         var total = document.querySelector(".total");

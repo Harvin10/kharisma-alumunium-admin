@@ -18,10 +18,10 @@
         </div>
         <div class="menu">
             <ul>
-                <li><a href="index.php">home</a></li>
+                <li><a href="index.php" class="this">home</a></li>
                 <li><a href="selling/sold.php">sales</a></li>
                 <li><a href="buying/bought.php">purchases</a></li>
-                <li><a href="production/used.php" class="this">used items</a></li>
+                <li><a href="production/used.php">used items</a></li>
             </ul>
         </div>
         <div class="profile">
@@ -29,7 +29,7 @@
         </div>
     </section>
     <section class="body">
-
+        <a href="small_feature/stock.php">stock</a>
     </section>
 </body>
 

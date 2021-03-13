@@ -11,6 +11,22 @@
 </head>
 
 <body>
+    <section class="header">
+        <div class="logo">
+            <a href="index.php"><img src="#" alt="Logo"></a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="../index.php">home</a></li>
+                <li><a href="../selling/sold.php">sales</a></li>
+                <li><a href="../buying/bought.php">purchases</a></li>
+                <li><a href="../production/used.php">used items</a></li>
+            </ul>
+        </div>
+        <div class="profile">
+            <a href="#"></a> <!-- profile -->
+        </div>
+    </section>
     <section class="body">
         <section class="body-side">
             <label class="search-item">
@@ -23,7 +39,7 @@
             </section>
         </section>
         <section class="body-main">
-            <form action="receipt.php" method="POST">
+            <form action="stock_process.php" method="POST">
                 <section class="inputs-container">
                     <div class="inputs">
                     </div>
@@ -43,7 +59,7 @@
             let div = document.createElement("div");
             let jsx = `
                 <input type="text" name="id[]" value="${id}" class="hidden">
-                <input type="text" class="type${key}" name="item_type[]" value="1" class="hidden">
+                <input type="text" class="type${key} hidden" name="item_type[]" value="1">
                 <label>
                 name
                     <input type="text" name="item[]" value="${name}">
@@ -110,7 +126,7 @@
                     }
                 }
             };
-            xhttp.open("GET", "data/unit_stock.php?q=" + id, true);
+            xhttp.open("GET", "../selling/data/unit_stock.php?q=" + id, true);
             xhttp.send();
         }
 

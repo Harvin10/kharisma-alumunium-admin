@@ -10,6 +10,9 @@ foreach ($datas as $data) {
     $person = [];
     $person["id"] = $data["id"];
     $person["name"] = $data["name"];
+    $person["role"] = $data["role"];
+    $person["salary"] = $data["salary"];
+    $person["payment_time"] = $data["payment_time"];
     array_push($value, $person);
 }
 

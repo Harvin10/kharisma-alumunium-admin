@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/sold.css">
     <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/index.css">
     <title>Document</title>
 </head>
 
@@ -30,6 +31,8 @@
     </section>
     <section class="body">
         <a href="small_feature/stock.php">stock</a>
+        <a href="small_feature/suppliers.php">supplier</a>
+        <a href="small_feature/employees.php">employee</a>
     </section>
 </body>
 

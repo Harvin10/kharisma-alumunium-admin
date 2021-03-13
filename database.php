@@ -1,5 +1,5 @@
 <?php
-// $conn = new mysqli("sql105.epizy.com", "epiz_27719916", "JLlFVEoRB5", "epiz_27719916_shop");
+// $conn = new mysqli("sql310.epizy.com", "epiz_28111845", "vuyfNqViQB6F", "epiz_28111845_kharisma2");
 date_default_timezone_set('Asia/Jakarta');
 $conn = new mysqli("localhost", "root", "", "kharisma2");
 
